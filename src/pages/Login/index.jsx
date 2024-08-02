@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Leaf } from 'lucide-react'
+import { Link } from "react-router-dom";
 
 
 export default function Login() {
@@ -52,6 +53,8 @@ export default function Login() {
               required
               onChange={(e) => setSenha(e.target.value)}
             />
+
+            <span>Não tem uma conta? <Link className="underline underline-offset-4" to='/cadastro'>Cadastre-se</Link> </span>
             {error && <p className="text-red-500">Username/password incorrect</p>}
             <button className="btn text-base-200 bg-success w-full rounded-full" type="submit">
               Entrar

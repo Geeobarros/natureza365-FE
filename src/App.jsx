@@ -1,14 +1,11 @@
 import './App.css'
-import CadastroUsuarios from './pages/Cadastro'
-import Login from './pages/Login'
+import RoutesComponent from './routes/routes'
 
 function App() {
 
   return (
     <>
-    <CadastroUsuarios/>
-
-      {/* <Login/> */}
+      <RoutesComponent/>
     </>
   )
 }

@@ -1,8 +1,6 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Leaf } from 'lucide-react';
 
-export default function CadastroUsuarios() {
+export default function Cadastro() {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   function onSubmit(data) {
