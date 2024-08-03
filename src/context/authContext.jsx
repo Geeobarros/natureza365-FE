@@ -1,4 +1,3 @@
-import { LogOut } from "lucide-react";
 import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext({

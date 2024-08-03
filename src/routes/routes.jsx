@@ -6,7 +6,7 @@ export default function RoutesComponent() {
     return (
         <Router>
             <Routes>
-                <Route path="/login" element={<Login/>} />
+                <Route path="/" element={<Login/>} />
                 <Route path="/cadastro" element={<Cadastro/>} />
             </Routes>
         </Router>
