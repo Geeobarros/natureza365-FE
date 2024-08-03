@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Leaf } from 'lucide-react'
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
 
 
-export default function Login() {
-    // const { Login } = useAuth();
-    const [usuario, setUsuario] = useState('');
+ export default function Login() {
+    const { Login } = useAuth();
+    const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     // const navigate = useNavigate()
     const [error, setError] = useState(null);
@@ -14,15 +15,15 @@ export default function Login() {
         e.preventDefault();
         setError(null);
 
-        // try {
-        //     await Login({ usuario, senha });
-        //     // navigate('/dashboard');
-        //     console.log('login', 'nome:', usuario, 'senha:', senha)
-        // }catch(error) {
-        //     console.log('falha no login');
-        //     setError(<span>email/senha incorreta</span>)
+        try {
+            await Login({ email, senha });
+            // navigate('/dashboard');
+            console.log('login', 'nome:', email, 'senha:', senha)
+        }catch(error) {
+            console.log('falha no login');
+            setError(<span>email/senha incorreta</span>)
 
-        // }
+        }
         
     }
 
@@ -41,9 +42,9 @@ export default function Login() {
               type="email"
               className="input input-bordered"
               placeholder="Email"
-              value={usuario}
+              value={email}
               required
-              onChange={(e) => setUsuario(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="password"
