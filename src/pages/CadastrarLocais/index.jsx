@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { addLoccais } from "../../api/endpoints";
 
 export default function CadastrarLocais() {
   const {
@@ -10,7 +11,16 @@ export default function CadastrarLocais() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+      addLoccais(data).then(
+        console.log(data),
+        alert("Local cadastrado com sucesso")
+        
+      ).catch((error) => {
+        alert('Houve um erro ao cadastrar usuário')
+        console.log(error.message);
+
+      })
+    
   };
 
   const cepApi = async (cep) => {
@@ -28,6 +38,8 @@ export default function CadastrarLocais() {
       console.error("Erro ao buscar o endereço:", error);
     }
   };
+
+
 
   return (
     <div className="max-w-lg mx-auto mt-10 p-4 bg-white rounded shadow-md">
@@ -73,7 +85,7 @@ export default function CadastrarLocais() {
           <input
             type="text"
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            {...register("identificadorUsuario", {
+            {...register("idUsuario", {
               required: "ID do usuário é obrigatório",
             })}
           />

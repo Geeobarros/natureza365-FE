@@ -1,0 +1,103 @@
+{
+  "usuarios": [
+    {
+      "nome": "George Lucas",
+      "sexo": "Masculino",
+      "data_nascimento": "1940-05-04",
+      "cpf": "111.333.487-12",
+      "cep": "06397-290",
+      "endereco": "",
+      "email": "george@email.com",
+      "senha": "123456",
+      "id": "36d5"
+    },
+    {
+      "nome": "Chewbacca",
+      "sexo": "Masculino",
+      "data_nascimento": "2000-10-01",
+      "cpf": "123.456.789-10",
+      "cep": "01001-000",
+      "endereco": "",
+      "email": "chew@email.com",
+      "senha": "123456",
+      "id": "cc19"
+    },
+    {
+      "nome": "Leia Organa",
+      "sexo": "Feminino",
+      "data_nascimento": "1955-09-10",
+      "cpf": "444.333.222-10",
+      "cep": "88058-500",
+      "endereco": "",
+      "email": "leia@email.com",
+      "senha": "123456",
+      "id": "4891"
+    },
+    {
+      "nome": "Luke Skywalker",
+      "sexo": "Masculino",
+      "data_nascimento": "1955-09-10",
+      "cpf": "444.222.222-10",
+      "cep": "88058-500",
+      "endereco": "",
+      "email": "luke@email.com",
+      "senha": "123456",
+      "id": "75b9"
+    },
+    {
+      "nome": "Han Solo",
+      "sexo": "Masculino",
+      "data_nascimento": "1950-04-20",
+      "cpf": "444.333.487-10",
+      "cep": "88058-300",
+      "endereco": "",
+      "email": "han@email.com",
+      "senha": "123456",
+      "id": "f9be"
+    },
+    {
+      "nome": "Yoda",
+      "sexo": "Outros",
+      "data_nascimento": "1900-05-04",
+      "cpf": "111.333.487-10",
+      "cep": "06397-250",
+      "endereco": "",
+      "email": "yoda@email.com",
+      "senha": "123456",
+      "id": "9e33"
+    },
+    {
+      "nome": "Anakin Skywalker",
+      "sexo": "Masculino",
+      "data_nascimento": "1930-05-04",
+      "cpf": "111.123.487-10",
+      "cep": "28930-000",
+      "endereco": "",
+      "email": "anakin@email.com",
+      "senha": "123456",
+      "id": "20dd"
+    }
+  ],
+  "locais": [
+    {
+      "id": "51c8",
+      "nomeLocal": "asasa",
+      "descricao": "asasas",
+      "idUsuario": "asas",
+      "cep": "06397-290",
+      "localizacao": "Rua Boa Vista, Vila Lourdes, Carapicuíba - SP",
+      "longitude": "",
+      "latitude": ""
+    },
+    {
+      "id": "d8c0",
+      "nomeLocal": "Praia dos ingleses",
+      "descricao": "padad",
+      "idUsuario": "1255",
+      "cep": "88058-500",
+      "localizacao": "Rua das Gaivotas, Ingleses do Rio Vermelho, Florianópolis - SC",
+      "longitude": "",
+      "latitude": ""
+    }
+  ]
+}
