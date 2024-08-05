@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Edit, Trash } from "lucide-react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { getLocais, deleteLocal, atualizarLocal } from "../../api/endpoints";
 
 export default function GerenciarLocais() {
-  const [editarLocal, setEditarLocal] = useState(null);
+  const [editarLocal, setEditarLocal] = useState(false);
+  const [locais, setLocais] = useState([]);
+  const [editandoId, setEdtandoId] = useState('')
+
   const {
     register,
     handleSubmit,
@@ -14,23 +18,43 @@ export default function GerenciarLocais() {
   
 
   const editForm = (local) => {
-    setEditarLocal(local);
-    setValue("nome", local.nome);
+    setEditarLocal(!editarLocal);
+    setEdtandoId(local.id);
+    setValue("nomeLocal", local.nomeLocal);
     setValue("descricao", local.descricao);
-    setValue("usuario", local.usuario);
+    setValue("idUsuario", local.idUsuario);
     setValue("cep", local.cep);
     setValue("localizacao", local.localizacao);
     setValue("latitude", local.latitude);
     setValue("longitude", local.longitude);
+
   };
 
-  const deleteForm = (id) => {
+  useEffect(() => {
+    getLocais().then((loc) => setLocais(loc));
+  }, []);
+
+
+  const onDelete = (id) => {
+    deleteLocal(id).then(() => {
+      getLocais().then((loc) => setLocais(loc));
+    })
+
     console.log(`Excluindo local com ID: ${id}`);
+  };
+
+  const onUpdate = (id, data) => {
+    atualizarLocal(id, data).then(() => {
+      getLocais().then((loc) => setLocais(loc));
+      setEditarLocal(null);
+      
+    });
+    console.log(`Atualizando local com ID: ${id}`);
   };
 
   const onSubmit = (data) => {
     console.log("Dados do formulário:", data);
-    setEditarLocal(null);
+    onUpdate(editandoId, data);
   };
 
   const cepApi = async (cep) => {
@@ -50,18 +74,7 @@ export default function GerenciarLocais() {
     }
   };
 
-  const locais = [
-    {
-      id: 1,
-      nome: "Gávea",
-      descricao: "Pedra da Gávea",
-      usuario: "Christian",
-      cep: "",
-      localizacao: "Rio de Janeiro",
-      latitude: "-23.001",
-      longitude: "-43.299",
-    },
-  ];
+  
 
   return (
     <div className="flex flex-col items-center mt-10">
@@ -77,7 +90,7 @@ export default function GerenciarLocais() {
             <input
               type="text"
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-              {...register("nome", { required: true })}
+              {...register("nomeLocal", { required: true })}
             />
           </div>
           <div className="mb-4">
@@ -96,7 +109,7 @@ export default function GerenciarLocais() {
             <input
               type="text"
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-              {...register("usuario", { required: true })}
+              {...register("idUsuario", { required: true })}
             />
           </div>
 
@@ -164,26 +177,32 @@ export default function GerenciarLocais() {
               <th className="px-4 py-2">Descrição do local</th>
               <th className="px-4 py-2">Usuário</th>
               <th className="px-4 py-2">Localização</th>
+              <th className="px-4 py-2">Longitude</th>
+              <th className="px-4 py-2">Latitude</th>
+
               <th className="px-4 py-2">Ações</th>
             </tr>
           </thead>
           <tbody>
             {locais.map((local) => (
               <tr key={local.id}>
-                <td className="border px-4 py-2">{local.nome}</td>
+                <td className="border px-4 py-2">{local.nomeLocal}</td>
                 <td className="border px-4 py-2">{local.descricao}</td>
-                <td className="border px-4 py-2">{local.usuario}</td>
+                <td className="border px-4 py-2">{local.idUsuario}</td>
                 <td className="border px-4 py-2">{local.localizacao}</td>
-                <td className="border px-4 py-2 flex justify-center items-center space-x-2">
+                <td className="border px-4 py-2">{local.longitude}</td>
+                <td className="border px-4 py-2">{local.latitude}</td>
+
+                <td className="border py-2 ">
                   <button
-                    className="text-blue-500 hover:text-blue-700"
+                    className="text-blue-500 hover:text-blue-700 mx-3"
                     onClick={() => editForm(local)}
                   >
                     <Edit className="w-5 h-5" />
                   </button>
                   <button
                     className="text-red-500 hover:text-red-700"
-                    onClick={() => deleteForm(local.id)}
+                    onClick={() => onDelete(local.id)}
                   >
                     <Trash className="w-5 h-5" />
                   </button>

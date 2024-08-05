@@ -78,26 +78,5 @@
       "id": "20dd"
     }
   ],
-  "locais": [
-    {
-      "id": "51c8",
-      "nomeLocal": "asasa",
-      "descricao": "asasas",
-      "idUsuario": "asas",
-      "cep": "06397-290",
-      "localizacao": "Rua Boa Vista, Vila Lourdes, Carapicuíba - SP",
-      "longitude": "",
-      "latitude": ""
-    },
-    {
-      "id": "d8c0",
-      "nomeLocal": "Praia dos ingleses",
-      "descricao": "padad",
-      "idUsuario": "1255",
-      "cep": "88058-500",
-      "localizacao": "Rua das Gaivotas, Ingleses do Rio Vermelho, Florianópolis - SC",
-      "longitude": "",
-      "latitude": ""
-    }
-  ]
+  "locais": []
 }

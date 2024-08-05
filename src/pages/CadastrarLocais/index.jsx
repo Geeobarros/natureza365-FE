@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { addLoccais } from "../../api/endpoints";
+import { useNavigate } from 'react-router'
 
 export default function CadastrarLocais() {
   const {
@@ -10,12 +11,16 @@ export default function CadastrarLocais() {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate()
+
   const onSubmit = (data) => {
-      addLoccais(data).then(
-        console.log(data),
-        alert("Local cadastrado com sucesso")
-        
-      ).catch((error) => {
+      addLoccais(data)
+        .then((response) => {
+          console.log(response);
+          alert("Local cadastrado com sucesso");
+          navigate("/dashboard/gerenciar-locais");
+        })
+      .catch((error) => {
         alert('Houve um erro ao cadastrar usuário')
         console.log(error.message);
 

@@ -11,10 +11,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     getLocais().then((loc) => setLocais(loc));
-    
   }, []);
-  getLocais()
-
+  
   useEffect(() => {
     getLocais().then((loc) => setQtdLocais(loc.length));
   }, []);
@@ -55,7 +53,6 @@ export default function Dashboard() {
       <div className="flex justify-center mt-10">
         <div className="overflow-x-auto w-full max-w-4xl">
           <table className="table-auto w-full">
-
             <thead className="bg-neutral-100">
               <tr>
                 <th className="px-4 py-2">Nome do local</th>
