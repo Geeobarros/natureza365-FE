@@ -1,16 +1,5 @@
 {
-  "usuarios": [
-    {
-      "nome": "George Lucas",
-      "sexo": "Masculino",
-      "data_nascimento": "1940-05-04",
-      "cpf": "111.333.487-12",
-      "cep": "06397-290",
-      "endereco": "",
-      "email": "george@email.com",
-      "senha": "123456",
-      "id": "36d5"
-    },
+  "usuarios": [    
     {
       "nome": "Chewbacca",
       "sexo": "Masculino",
@@ -76,6 +65,17 @@
       "email": "anakin@email.com",
       "senha": "123456",
       "id": "20dd"
+    },
+    {
+      "id": "3ca7",
+      "name": "George Lucas",
+      "age": "1940-05-04",
+      "sexo": "masculino",
+      "cpf": "111.333.487-12",
+      "cep": "06397-290",
+      "endereco": "Rua Boa Vista, Vila Lourdes, Carapicuíba - SP",
+      "email": "george@email.com",
+      "senha": "12345"
     }
   ],
   "locais": []

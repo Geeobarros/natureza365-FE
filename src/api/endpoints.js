@@ -23,10 +23,10 @@ export const getUser = (id) => axios.get(`${urlPrefix}/usuarios/${id}`)
     console.error(error);
     })
 
-export const addUser = () => axios.post(`${urlPrefix}/usuarios/`)
+export const addUser = (values) => axios.post(`${urlPrefix}/usuarios/`, values)
     .then(function (response) {
+        return response.data
     
-    console.log(response);
     })
     .catch(function (error) {
     

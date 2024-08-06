@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { addUser } from "../../api/endpoints";
+import { useNavigate } from "react-router-dom";
 
 export default function Cadastro() {
   const {
@@ -8,9 +10,19 @@ export default function Cadastro() {
     setValue,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
+    addUser(data)
+      .then((response) => {
+        console.log(response);
+        alert("Usuário cadastrado com sucesso");
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        alert("Houve um erro ao cadastrar usuário");
+        console.log(error.message);
+      });
   };
 
   const cepApi = async (cep) => {
@@ -63,8 +75,9 @@ export default function Cadastro() {
               <select
                 className="select select-bordered w-full"
                 {...register("sexo", { required: "Sexo é obrigatório!" })}
+                defaultValue=''
               >
-                <option disabled selected value="">
+                <option disabled value="">
                   Selecione
                 </option>
                 <option value="feminino">Feminino</option>
