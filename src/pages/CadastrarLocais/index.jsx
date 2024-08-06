@@ -30,14 +30,22 @@ export default function CadastrarLocais() {
 
   const cepApi = async (cep) => {
     try {
-      const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+      const response = await axios.get(`https://cep.awesomeapi.com.br/json/${cep}`);
       if (response.data.erro) {
         alert("CEP não encontrado");
       } else {
         setValue(
           "localizacao",
-          `${response.data.logradouro}, ${response.data.bairro}, ${response.data.localidade} - ${response.data.uf}`
-        );
+          `${response.data.address}, ${response.data.district}, ${response.data.city} - ${response.data.state}`
+        ),
+        setValue(
+          "latitude",
+          `${response.data.lat}`
+        ),
+        setValue(
+          "longitude",
+          `${response.data.lng}`
+        )
       }
     } catch (error) {
       console.error("Erro ao buscar o endereço:", error);
@@ -109,7 +117,7 @@ export default function CadastrarLocais() {
             {...register("cep", {
               required: "CEP é obrigatório",
               pattern: {
-                value: /^\d{5}-?\d{3}$/,
+                value: /^\d{5}\d{3}$/,
                 message: "CEP inválido",
               },
             })}
@@ -126,7 +134,7 @@ export default function CadastrarLocais() {
           </label>
           <input
             type="text"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="mt-1 block w-full h-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             {...register("localizacao", {
               required: "Localização é obrigatória",
             })}
@@ -134,22 +142,6 @@ export default function CadastrarLocais() {
           {errors.localizacao && (
             <p className="text-red-500 text-sm mt-1">
               {errors.localizacao.message}
-            </p>
-          )}
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Longitude
-          </label>
-          <input
-            type="text"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            {...register("longitude")}
-          />
-          {errors.longitude && (
-            <p className="text-red-500 text-sm mt-1">
-              {errors.longitude.message}
             </p>
           )}
         </div>
@@ -166,6 +158,22 @@ export default function CadastrarLocais() {
           {errors.latitude && (
             <p className="text-red-500 text-sm mt-1">
               {errors.latitude.message}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Longitude
+          </label>
+          <input
+            type="text"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            {...register("longitude")}
+          />
+          {errors.longitude && (
+            <p className="text-red-500 text-sm mt-1">
+              {errors.longitude.message}
             </p>
           )}
         </div>
