@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Leaf } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 
 export default function Login() {
-  const { Login } = useAuth();
+  const { Login, usuario, erroLogin } = useAuth();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
@@ -16,22 +16,24 @@ export default function Login() {
 
     try {
       await Login({ email, senha });
-      navigate("/dashboard");
-      console.log("login", "nome:", email, "senha:", senha);
     } catch (error) {
       console.log("falha no login");
-      setError(<span>Email/Senha incorreta</span>);
     }
   }
+  useEffect(() => {
+    console.log("user:", usuario);
+    if (usuario) {
+      navigate("/dashboard");
+    }
+
+    if (erroLogin === true) {
+      setError(<span>email/senha incorreta</span>);
+    }
+  }, [usuario, erroLogin]);
 
   return (
-    <div className="min-h-screen bg-lime-300 flex flex-col justify-center items-center">
-      <div className="bg-neutral-100 p-8 rounded shadow-md w-80">
-        <p>
-          Compartilhe suas experiências em praias, trilhas, parques ecológicos,
-          reservas ambientais e outros locais de interesse para os amantes da
-          natureza.
-        </p>
+    <div className="min-h-screen bg-green-100 flex flex-col justify-center items-center">
+      <div className="bg-white p-8 rounded shadow-md w-80">
         <div className="flex flex justify-center">
           <Leaf size={64} color="darkgreen" />
         </div>
@@ -62,9 +64,11 @@ export default function Login() {
                 Cadastre-se
               </Link>{" "}
             </span>
-            {error && <p className="text-red-500">Email/senha incorreta</p>}
+            {error && (
+              <p className="text-red-500">Username/password incorrect</p>
+            )}
             <button
-              className="btn bg-lime-300 w-full rounded-full"
+              className="btn text-base-200 bg-success w-full rounded-full"
               type="submit"
             >
               Entrar

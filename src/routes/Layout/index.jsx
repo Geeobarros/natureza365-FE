@@ -1,7 +1,17 @@
 import { LogOut } from "lucide-react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
 
 export default function Layout() {
+  const { usuario, Logout } = useAuth();
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    Logout();
+    navigate("/");
+  }
+
+  console.log(usuario);
   return (
     <div className="drawer drawer-open">
       <input id="my-drawer-2" className="drawer-toggle" />
@@ -28,9 +38,11 @@ export default function Layout() {
             </li>
           </ul>
           <div className="bg-lime-300">
-            <Link to="/" className="w-full text-center mt-auto">
+            {usuario && <p>{usuario.email}</p>}
+
+            <button onClick={handleLogout}>
               <LogOut />
-            </Link>
+            </button>
           </div>
         </div>
       </div>

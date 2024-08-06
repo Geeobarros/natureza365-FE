@@ -1,27 +1,44 @@
 import { createContext, useContext, useState } from "react";
+import axios from "axios";
 
 const AuthContext = createContext({
-    usuario: null,
-    login: async () => {},
-    LogOut: () => {},
+  usuario: null,
+  erroLogin: false,
+  login: async () => {},
+  LogOut: () => {},
 });
 
-export function AuthProvider({ children }){
-    const [usuario, setUsuario] = useState(null)
+export function AuthProvider({ children }) {
+  const [usuario, setUsuario] = useState(null);
+  const [erroLogin, setErroLogin] = useState(null);
 
-    async function login({ email, senha }) {
-        const response = await fetch()
-        const data = await response.json()
-        return data
-    }
+  async function Login({ email, senha }) {
+    const response = await axios.get("http://localhost:3000/usuarios");
+    response.data.map((user) => {
+      if (user.email === email && user.senha === senha) {
+        setUsuario(user);
+        setErroLogin(false);
+      } else {
+        setErroLogin(true);
+      }
 
-    return(
-        <AuthContext.Provider value={{ usuario, login}}>{children}</AuthContext.Provider> 
-    );
+      localStorage.setItem("usuario", JSON.stringify(user));
+    });
+  }
 
+  async function Logout() {
+    setUsuario(null);
+    localStorage.removeItem('usuario')
+  }
+
+  return (
+    <AuthContext.Provider value={{ usuario, Login, Logout, erroLogin }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export function useAuth() {
-    const contexto = useContext(AuthContext)
-    return contexto
+  const contexto = useContext(AuthContext);
+  return contexto;
 }
