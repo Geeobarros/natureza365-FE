@@ -59,14 +59,21 @@ export default function GerenciarLocais() {
 
   const cepApi = async (cep) => {
     try {
-      const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+      const response = await axios.get(`https://cep.awesomeapi.com.br/json/${cep}`);
       if (response.data.erro) {
         alert("CEP não encontrado");
       } else {
         setValue(
           "localizacao",
-          `${response.data.logradouro}, ${response.data.bairro}, ${response.data.localidade} - ${response.data.uf}`,
-          
+          `${response.data.address}, ${response.data.district}, ${response.data.city} - ${response.data.state}`
+        ),
+        setValue(
+          "latitude",
+          `${response.data.lat}`
+        ),
+        setValue(
+          "longitude",
+          `${response.data.lng}`
         )
       }
     } catch (error) {
@@ -122,7 +129,7 @@ export default function GerenciarLocais() {
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               {...register("cep", {
                 pattern: {
-                  value: /^\d{5}-?\d{3}$/,
+                  value: /^\d{5}\d{3}$/,
                   message: "CEP inválido",
                 },
               })}
@@ -139,7 +146,7 @@ export default function GerenciarLocais() {
             </label>
             <input
               type="text"
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              className="mt-1 block w-full h-10 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               {...register("localizacao", { required: true })}
             />
           </div>

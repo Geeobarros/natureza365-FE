@@ -1,5 +1,5 @@
 {
-  "usuarios": [    
+  "usuarios": [
     {
       "nome": "Chewbacca",
       "sexo": "Masculino",
@@ -78,5 +78,16 @@
       "senha": "12345"
     }
   ],
-  "locais": []
+  "locais": [
+    {
+      "nomeLocal": "Ilha do campeche",
+      "descricao": "ilha do campeche em Floripa",
+      "idUsuario": "sasa",
+      "cep": "88058500",
+      "localizacao": "Rua das Gaivotas, Ingleses do Rio Vermelho, Florianópolis - SC  ",
+      "latitude": "-27.60422",
+      "longitude": "-48.54638",
+      "id": "5f3c"
+    }
+  ]
 }
