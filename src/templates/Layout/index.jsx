@@ -1,17 +1,18 @@
 import { LogOut } from "lucide-react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate, Navigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 
-export default function Layout() {
-  const { usuario, Logout } = useAuth();
+export function PrivateRouteLayout() {
   const navigate = useNavigate();
+  const { usuario, Logout } = useAuth();
+
+  console.log(usuario);
 
   function handleLogout() {
     Logout();
     navigate("/");
   }
 
-  console.log(usuario);
   return (
     <div className="drawer drawer-open">
       <input id="my-drawer-2" className="drawer-toggle" />
@@ -28,13 +29,13 @@ export default function Layout() {
           <h3 className="text-bold font-medium">Menu</h3>
           <ul className="menu bg-lime-300 text-base-content flex-grow">
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/">Dashboard</Link>
             </li>
             <li>
-              <Link to="/dashboard/cadastrar-local">Cadastrar local</Link>
+              <Link to="/cadastrar-local">Cadastrar local</Link>
             </li>
             <li>
-              <Link to="/dashboard/gerenciar-locais">Gerenciar locais</Link>
+              <Link to="/gerenciar-locais">Gerenciar locais</Link>
             </li>
           </ul>
           <div className="bg-lime-300">

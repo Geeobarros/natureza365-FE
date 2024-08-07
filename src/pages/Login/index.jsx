@@ -21,7 +21,6 @@ export default function Login() {
     }
   }
   useEffect(() => {
-    console.log("user:", usuario);
     if (usuario) {
       navigate("/dashboard");
     }

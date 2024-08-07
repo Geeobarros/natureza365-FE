@@ -9,7 +9,7 @@ const AuthContext = createContext({
 });
 
 export function AuthProvider({ children }) {
-  const [usuario, setUsuario] = useState(null);
+  const [usuario, setUsuario] = useState(JSON.parse(localStorage.getItem('usuario')));
   const [erroLogin, setErroLogin] = useState(null);
 
   async function Login({ email, senha }) {
