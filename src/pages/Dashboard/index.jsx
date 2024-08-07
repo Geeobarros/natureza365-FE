@@ -4,6 +4,9 @@ import { useEffect } from "react";
 import { getLocais, getUsers } from "../../api/endpoints";
 import { useState } from "react";
 
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+
 export default function Dashboard() {
   const [locais, setLocais] = useState([]);
   const [users, setUsers] = useState([]);
@@ -29,6 +32,12 @@ export default function Dashboard() {
     }
     return "(não encontrado)";
   };
+
+  const parseCoordinates = (coordinate) => {
+    return parseFloat(coordinate.replace(',', '.'));
+  };
+
+  
 
   return (
     <div>
@@ -84,6 +93,28 @@ export default function Dashboard() {
             </tbody>
           </table>
         </div>
+      </div>
+
+      <div className=" ms-40 my-10 ">
+        <MapContainer center={[-23.55052, -46.633308]} zoom={5} style={{ height: "300px", width: "80%" }}>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          />
+          {locais.map((local) => {
+            const latitude = parseCoordinates(local.latitude);
+            const longitude = parseCoordinates(local.longitude);
+            return (
+              <Marker key={local.id} position={[latitude, longitude]}>
+                <Popup>
+                  <b>{local.nomeLocal}</b><br />
+                  {local.descricao}<br />
+                  {local.localizacao}
+                </Popup>
+              </Marker>
+            );
+          })}
+        </MapContainer>
       </div>
     </div>
   );
