@@ -2,8 +2,10 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { addLoccais } from "../../api/endpoints";
 import { useNavigate } from 'react-router'
+import { useAuth } from "../../context/authContext";
 
 export default function CadastrarLocais() {
+  const { usuario } = useAuth();
   const {
     register,
     handleSubmit,
@@ -14,16 +16,16 @@ export default function CadastrarLocais() {
   const navigate = useNavigate()
 
   const onSubmit = (data) => {
-      addLoccais(data)
-        .then((response) => {
-          console.log(response);
+      addLoccais({
+        idUsuario: usuario.id,
+        ...data,
+      })
+        .then(() => {
           alert("Local cadastrado com sucesso");
-          navigate("/dashboard/gerenciar-locais");
+          navigate("/gerenciar-locais");
         })
       .catch((error) => {
-        alert('Houve um erro ao cadastrar usuário')
-        console.log(error.message);
-
+        alert('Houve um erro ao cadastrar usuário', error)
       })
     
   };
@@ -91,7 +93,7 @@ export default function CadastrarLocais() {
           )}
         </div>
 
-        <div>
+        {/* <div>
           <label className="block text-sm font-medium text-gray-700">
             ID Usuário
           </label>
@@ -107,7 +109,7 @@ export default function CadastrarLocais() {
               {errors.idUsuario.message}
             </p>
           )}
-        </div>
+        </div> */}
 
         <div>
           <label className="block text-sm font-medium text-gray-700">CEP</label>

@@ -17,7 +17,7 @@ export default function Cadastro() {
       .then((response) => {
         console.log(response);
         alert("Usuário cadastrado com sucesso");
-        navigate("/dashboard");
+        navigate("/");
       })
       .catch((error) => {
         alert("Houve um erro ao cadastrar usuário");
@@ -52,10 +52,10 @@ export default function Cadastro() {
               <input
                 type="text"
                 className="input input-bordered w-full"
-                {...register("name", { required: "Nome é obrigatório!" })}
+                {...register("nome", { required: "Nome é obrigatório!" })}
               />
               {errors.name && (
-                <p className="text-error">{errors.name.message}</p>
+                <p className="text-error">{errors.nome.message}</p>
               )}
 
               <label className="label">Data de nascimento:</label>

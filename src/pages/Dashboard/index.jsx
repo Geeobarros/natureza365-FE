@@ -6,11 +6,13 @@ import { useState } from "react";
 
 export default function Dashboard() {
   const [locais, setLocais] = useState([]);
+  const [users, setUsers] = useState([]);
   const [qtdLocais, setQtdLocais] = useState(0);
   const [qtdUsuarios, setQtdUsuarios] = useState(0);
 
   useEffect(() => {
     getLocais().then((loc) => setLocais(loc));
+    getUsers().then(urs => setUsers(urs));
   }, []);
   
   useEffect(() => {
@@ -20,6 +22,14 @@ export default function Dashboard() {
   useEffect(() => {
     getUsers().then((users) => setQtdUsuarios(users.length));
   }, []);
+
+  const getUserName = (idUsuario) => {
+    if (users.length){
+
+      return users.find((user) => user.id === idUsuario).nome || "(não achado)";
+    }
+    return "(não encontrado)"
+  }
 
   return (
     <div>
@@ -66,7 +76,7 @@ export default function Dashboard() {
                 <tr key={local.id}>
                   <td className="border px-4 py-2">{local.nomeLocal}</td>
                   <td className="border px-4 py-2">{local.descricao}</td>
-                  <td className="border px-4 py-2">{local.idUsuario}</td>
+                  <td className="border px-4 py-2">{users ? getUserName(local.idUsuario) : "..."}</td>
                   <td className="border px-4 py-2">{local.localizacao}</td>
                 </tr>
               ))}

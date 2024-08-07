@@ -2,7 +2,7 @@ import axios from "axios";
 
 const urlPrefix = "http://localhost:3000";
 
-export const getUsers = () => axios.get(`${urlPrefix}/usuarios`)
+export const getUsers = async () => await axios.get(`${urlPrefix}/usuarios`)
     .then(function (response) {
        return response.data
     
@@ -13,7 +13,7 @@ export const getUsers = () => axios.get(`${urlPrefix}/usuarios`)
     console.error(error);
     })
 
-export const getUser = (id) => axios.get(`${urlPrefix}/usuarios/${id}`)
+export const getUser = async (id) => await axios.get(`${urlPrefix}/usuarios/${id}`)
     .then(function (response) {
     
     console.log(response);
@@ -23,7 +23,7 @@ export const getUser = (id) => axios.get(`${urlPrefix}/usuarios/${id}`)
     console.error(error);
     })
 
-export const addUser = (values) => axios.post(`${urlPrefix}/usuarios/`, values)
+export const addUser = async (values) => await axios.post(`${urlPrefix}/usuarios/`, values)
     .then(function (response) {
         return response.data
     
@@ -33,7 +33,7 @@ export const addUser = (values) => axios.post(`${urlPrefix}/usuarios/`, values)
     console.error(error);
     })
 
-export const editUser = (id) => axios.put(`${urlPrefix}/usuarios/${id}`)
+export const editUser = async (id) => await axios.put(`${urlPrefix}/usuarios/${id}`)
     .then(function (response) {
     
     console.log(response);
@@ -43,7 +43,7 @@ export const editUser = (id) => axios.put(`${urlPrefix}/usuarios/${id}`)
     console.error(error);
     })
 
-export const deleteUser = (id) => axios.delete(`${urlPrefix}/usuarios/${id}`)
+export const deleteUser = async (id) => await axios.delete(`${urlPrefix}/usuarios/${id}`)
     .then(function (response) {
     
     console.log(response);
@@ -53,7 +53,7 @@ export const deleteUser = (id) => axios.delete(`${urlPrefix}/usuarios/${id}`)
     console.error(error);
     })
 
-export const getLocais = () => axios.get(`${urlPrefix}/locais`)
+export const getLocais = async () => await axios.get(`${urlPrefix}/locais`)
     .then(function (response) {
         return response.data;
     })
@@ -62,7 +62,7 @@ export const getLocais = () => axios.get(`${urlPrefix}/locais`)
     console.error(error);
     })
 
-export const addLoccais = (values) => axios.post(`${urlPrefix}/locais`, values)
+export const addLoccais = async (values) => await axios.post(`${urlPrefix}/locais`, values)
     .then(function (response) {
         return response.data;
     })
@@ -70,7 +70,7 @@ export const addLoccais = (values) => axios.post(`${urlPrefix}/locais`, values)
     console.error(error);
     })
 
-export const deleteLocal = (id) => axios.delete(`${urlPrefix}/locais/${id}`)
+export const deleteLocal = async (id) => await axios.delete(`${urlPrefix}/locais/${id}`)
     .then(function (response) {
         return response.data;
     
