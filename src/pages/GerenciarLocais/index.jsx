@@ -3,11 +3,14 @@ import { Edit, Trash } from "lucide-react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { getLocais, deleteLocal, atualizarLocal } from "../../api/endpoints";
+import { useAuth } from "../../context/authContext";
 
 export default function GerenciarLocais() {
   const [editarLocal, setEditarLocal] = useState(false);
   const [locais, setLocais] = useState([]);
-  const [editandoId, setEdtandoId] = useState('')
+  const [editandoId, setEdtandoId] = useState('');
+
+  const { usuario } = useAuth();
 
   const {
     register,
@@ -111,7 +114,7 @@ export default function GerenciarLocais() {
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
-              Usuário
+              ID Usuário
             </label>
             <input
               type="text"
@@ -191,7 +194,7 @@ export default function GerenciarLocais() {
             </tr>
           </thead>
           <tbody>
-            {locais.map((local) => (
+            {locais.filter(local => local.idUsuario === usuario.id).map((local) => (
               <tr key={local.id}>
                 <td className="border px-4 py-2">{local.nomeLocal}</td>
                 <td className="border px-4 py-2">{local.descricao}</td>

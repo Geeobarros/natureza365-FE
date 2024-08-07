@@ -6,8 +6,6 @@ export function PrivateRouteLayout() {
   const navigate = useNavigate();
   const { usuario, Logout } = useAuth();
 
-  console.log(usuario);
-
   function handleLogout() {
     Logout();
     navigate("/");

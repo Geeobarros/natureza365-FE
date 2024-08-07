@@ -64,7 +64,7 @@ export default function Login() {
               </Link>{" "}
             </span>
             {error && (
-              <p className="text-red-500">Username/password incorrect</p>
+              <p className="text-red-500">Email/Senha incorreta</p>
             )}
             <button
               className="btn text-base-200 bg-success w-full rounded-full"
