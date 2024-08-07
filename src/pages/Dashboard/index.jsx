@@ -12,9 +12,9 @@ export default function Dashboard() {
 
   useEffect(() => {
     getLocais().then((loc) => setLocais(loc));
-    getUsers().then(urs => setUsers(urs));
+    getUsers().then((urs) => setUsers(urs));
   }, []);
-  
+
   useEffect(() => {
     getLocais().then((loc) => setQtdLocais(loc.length));
   }, []);
@@ -24,12 +24,11 @@ export default function Dashboard() {
   }, []);
 
   const getUserName = (idUsuario) => {
-    if (users.length){
-
+    if (users.length) {
       return users.find((user) => user.id === idUsuario).nome || "(não achado)";
     }
-    return "(não encontrado)"
-  }
+    return "(não encontrado)";
+  };
 
   return (
     <div>
@@ -62,7 +61,7 @@ export default function Dashboard() {
 
       <div className="flex justify-center mt-10">
         <div className="overflow-x-auto w-full max-w-4xl">
-          <table className="table-auto w-full">
+          <table className="table-auto w-full mb-7">
             <thead className="bg-neutral-100">
               <tr>
                 <th className="px-4 py-2">Nome do local</th>
@@ -76,7 +75,9 @@ export default function Dashboard() {
                 <tr key={local.id}>
                   <td className="border px-4 py-2">{local.nomeLocal}</td>
                   <td className="border px-4 py-2">{local.descricao}</td>
-                  <td className="border px-4 py-2">{users ? getUserName(local.idUsuario) : "..."}</td>
+                  <td className="border px-4 py-2">
+                    {users ? getUserName(local.idUsuario) : "..."}
+                  </td>
                   <td className="border px-4 py-2">{local.localizacao}</td>
                 </tr>
               ))}

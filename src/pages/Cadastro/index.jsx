@@ -2,6 +2,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { addUser } from "../../api/endpoints";
 import { useNavigate } from "react-router-dom";
+import { Leaf } from "lucide-react";
 
 export default function Cadastro() {
   const {
@@ -43,6 +44,13 @@ export default function Cadastro() {
 
   return (
     <div className="min-h-screen bg-lime-300 flex flex-col justify-center items-center">
+      <div className="flex mt-4 justify-center">
+        <Leaf size={64} color="lime" />
+      </div>
+      <h2 className=" text-2xl text-lime font-bold text-center">
+        {" "}
+        Cite Natureza
+      </h2>
       <div className="mt-10 mb-10 bg-white p-8 rounded shadow-md w-3/4">
         <h1 className="text-2xl font-semibold text-center mb-6">Cadastre-se</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -75,7 +83,7 @@ export default function Cadastro() {
               <select
                 className="select select-bordered w-full"
                 {...register("sexo", { required: "Sexo é obrigatório!" })}
-                defaultValue=''
+                defaultValue=""
               >
                 <option disabled value="">
                   Selecione

@@ -54,6 +54,17 @@
       "endereco": "Rua Boa Vista, Vila Lourdes, Carapicuíba - SP",
       "email": "ka@email.com",
       "senha": "123"
+    },
+    {
+      "id": "8954",
+      "nome": "Christian Barreto",
+      "age": "1988-12-10",
+      "sexo": "masculino",
+      "cpf": "131.558.927-88",
+      "cep": "28930-000",
+      "endereco": ", , Arraial do Cabo - RJ",
+      "email": "chris@email.com",
+      "senha": "123"
     }
   ],
   "locais": [
@@ -96,6 +107,16 @@
       "localizacao": "Mateiros - TO",
       "latitude": "-10,14759",
       "longitude": "-46,50135"
+    },
+    {
+      "id": "6017",
+      "idUsuario": "8954",
+      "nomeLocal": "Pontal do Atalaia",
+      "descricao": "O Pontal do Atalaia é um dos pontos mais bonitos de Arraial do Cabo, com vegetação nativa e as mais lindas praias do mundo.",
+      "cep": "28930000",
+      "localizacao": "Arraial do Cabo - RJ",
+      "latitude": "-22.989598",
+      "longitude": " -42.014858"
     }
   ]
 }
